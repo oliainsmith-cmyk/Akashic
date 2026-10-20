@@ -1544,6 +1544,32 @@ body.cosfull #fab,body.cosfull #tabbar{display:none!important}
 #zenith .zn-aotabs button{flex:none;overflow:visible}
 #lkGreet{text-wrap:balance}
 
+/* v2.8 question analyser */
+#zenith .qa-q{font:300 clamp(19px,2.4vw,24px)/1.5 'Fraunces',Georgia,serif;margin:0 0 16px}
+#zenith .qa-cmd{color:var(--zb);border-bottom:2px solid var(--zb)}
+#zenith .qa-party{color:var(--zphil);font-weight:500}
+#zenith .qa-marks{color:var(--zdawn)}
+#zenith .qa-focus{border-bottom:1px dashed var(--zc)}
+#zenith .qa-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+#zenith .qa-facts>div{border:1px solid var(--zl);border-radius:10px;padding:10px 12px;min-width:0}
+#zenith .qa-facts small{display:block;color:var(--zm);font-size:12px}
+#zenith .qa-facts b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#zenith .qa-ans .qa-para{padding:12px 0;border-bottom:1px solid var(--zl)}
+#zenith .qa-ans .qa-para:last-of-type{border-bottom:0}
+#zenith .qa-ans p{margin:0;font-size:15px;line-height:1.65}
+#zenith .qa-ev{border-bottom:1px solid var(--zl);padding:8px 0}
+#zenith .qa-ev:last-child{border-bottom:0}
+#zenith .qa-ev summary{cursor:pointer;display:flex;gap:10px;align-items:center;min-width:0}
+#zenith .qa-ev summary b{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+#zenith .qa-ev p{margin:6px 0 0 0}
+#zenith .qa-ev summary .zn-chip{flex:none;overflow:visible}
+#zenith .qa-links{display:grid;gap:6px}
+#zenith .qa-links button{text-align:left;background:none;border:1px solid var(--zl);border-radius:10px;padding:8px 12px;color:var(--zi);cursor:pointer;font-size:14px;text-wrap:balance}
+#zenith .qa-links button:hover{border-color:var(--zc)}
+@media (max-width:640px){#zenith .qa-links button{font-size:13px;padding:7px 10px}}
+#zenith .zn-btn.pri{color:#120d04}
+#zenith .qa-marks{white-space:nowrap}
+
 </style>
 </head>
 <body>
@@ -1589,7 +1615,7 @@ body.cosfull #fab,body.cosfull #tabbar{display:none!important}
    Single-file app. Vanilla JS IIFE, localStorage persistence,
    snapshot undo, no external dependencies.
    ================================================================ */
-const APP_VERSION = '2.7.1';
+const APP_VERSION = '2.8.0';
 const DB_KEY = 'lyceum_db_v1';
 const DEFAULT_LAYOUT = [
   {id:'reco',size:'full'},{id:'setup',size:'full'},{id:'progress',size:'full'},
@@ -1612,6 +1638,7 @@ function defaultSettings(){
   };
 }
 const UPDATE_SEED = [
+  {"v": "2.8.0", "d": "2026-10-20", "cat": "Added", "t": "Question analyser", "x": "Paste any exam question into Zenith's new Question analyser, or ask Lumen to \"answer this question: ...\". It finds the command word, marks, AO split, timing, parties and issues, matches the right blueprint, and writes a plan and a full draft answer from Akashic's own cases, arguments and quotations. It works offline. Six new flashcards across Law, Philosophy and English."},
   {"v": "2.7.1", "d": "2026-10-19", "cat": "Improved", "t": "Tidier Zenith", "x": "The Enter Zenith button is now a wide landscape bar on the home screen. Labels, chips and quota numbers in Zenith stay on one line and inside their cards; long question types are listed underneath each blueprint title instead. Six new flashcards across Law, Philosophy and English."},
   {"v": "2.7.0", "d": "2026-10-19", "cat": "Added", "t": "Zenith", "x": "A new world inside Akashic: AO blueprints for every Law, Philosophy and English topic (quotas, material, structures, evaluation chains and checklists), a click-to-forge phrase generator, sentence craft, an essay forge with a timed sprint, an AO radar for your drafts, and exam maps. Enter from the menu, the home screen or by asking Lumen for Zenith."},
   {v:'2.6.0',d:'2026-10-07',cat:'Added',t:"More duress cases",x:"Nine new cases on duress by threats and duress of circumstances (Lynch, Hudson and Taylor, Sharp, Shepherd, Valderrama-Vega, Cole, Willer, Quayle and Gill), four definitions on the limits of the defence, and seven flashcards. Search the Archive for \u201cduress\u201d to find them all."},
@@ -1803,7 +1830,7 @@ function v2Content(t){
   return C;
 }
 function v27Content(t){
-  const C={cards:[{"id": "v27c01", "q": "What does R v White [1910] 2 KB 124 establish, and where does it fit in an answer on actus reus, mens rea and strict liability?", "a": "Poisoning his mother was not a factual cause of death because she died of a heart attack before the poison took effect: attempted murder only. Use: AO1 definition of but-for causation; AO2 when the facts show the result would have happened anyway.", "sub": "law", "topicId": "tl11"}, {"id": "v27c02", "q": "For Murder, explain: Coke's definition of murder.", "a": "Unlawful killing of a reasonable creature in being under the King's peace with malice aforethought, express or implied. Use: AO1 opening of every murder answer.", "sub": "law", "topicId": "tl13"}, {"id": "v27c03", "q": "What does Coroners and Justice Act 2009 s54 provide?", "a": "D is not guilty of murder if the killing resulted from a loss of self-control with a qualifying trigger and a normal person might have reacted in the same or a similar way. Use: AO1 framework for every answer.", "sub": "law", "topicId": "tl14"}, {"id": "v27c04", "q": "What does Homicide Act 1957 s2 (as substituted by Coroners and Justice Act 2009 s52) provide?", "a": "A person who kills is not guilty of murder if suffering from an abnormality of mental functioning arising from a recognised medical condition, which substantially impaired specified abilities and provides an explanation for the killing. Use: AO1 framework.", "sub": "law", "topicId": "tl14"}, {"id": "v27c05", "q": "What does R v Lamb [1967] 2 QB 981 establish, and where does it fit in an answer on unlawful act and gross negligence manslaughter?", "a": "No unlawful act where friends played with a revolver and neither feared violence: no assault, so no unlawful act manslaughter. Use: AO2 where the base crime is not made out.", "sub": "law", "topicId": "tl15"}, {"id": "v27c06", "q": "What does Criminal Justice Act 1988 s39 provide?", "a": "Common assault and battery are summary offences with a maximum of six months. Use: AO1 base of the ladder.", "sub": "law", "topicId": "tl16"}, {"id": "v27c07", "q": "What does R v Brown [1994] 1 AC 212 establish, and where does it fit in an answer on consent as a defence?", "a": "Consent is no defence to sado-masochistic injuries amounting to ABH or above; public interest decided by majority. Lords Mustill and Slynn dissented on autonomy grounds. Use: AO1 general rule; AO3 autonomy versus paternalism.", "sub": "law", "topicId": "tl40"}, {"id": "v27c08", "q": "What does Criminal Law Act 1967 s3(1) provide?", "a": "A person may use such force as is reasonable in the circumstances in the prevention of crime or in effecting a lawful arrest. Use: AO1 statutory basis alongside common law.", "sub": "law", "topicId": "tl41"}, {"id": "v27c09", "q": "For The tripartite view, Gettier and responses, explain: The tripartite view (justified true belief).", "a": "S knows that p iff p is true, S believes p, and S is justified in believing p. Often traced to Plato's Theaetetus and Meno. Use: Opening AO1 of every question type. Write it as a biconditional.", "sub": "phil", "topicId": "tp01"}, {"id": "v27c10", "q": "For Direct realism, explain: Direct (naive) realism.", "a": "Mind-independent physical objects exist and are immediately perceived, with the properties we perceive them to have. Naive realism holds they have all those properties, including colour, when unperceived. Use: Opening AO1 of every question type.", "sub": "phil", "topicId": "tp07"}, {"id": "v27c11", "q": "For Indirect realism, explain: Indirect (representative) realism.", "a": "Mind-independent objects exist and cause sense data in us; we are immediately aware only of the sense data and perceive objects indirectly through them. Use: Opening AO1 in every question type.", "sub": "phil", "topicId": "tp08"}, {"id": "v27c12", "q": "For Berkeley's idealism, explain: Idealism and esse est percipi.", "a": "Physical objects are collections of ideas; their being consists in being perceived. Minds (spirits) and ideas are all that exist. Use: Opening AO1.", "sub": "phil", "topicId": "tp09"}, {"id": "v27c13", "q": "For Rationalism versus empiricism: innatism, explain: Leading questions.", "a": "Socrates' questions guide the boy at each stage; the boy reasons from what he can see in the drawing, so experience and reasoning, not recollection, explain his answer. Use: AO2 against Plato.", "sub": "phil", "topicId": "tp04"}, {"id": "v27c14", "q": "For Intuition, deduction and the a priori, explain: The three distinctions.", "a": "A priori/a posteriori concerns how we know; analytic/synthetic concerns meaning; necessary/contingent concerns how things could have been. Rationalists claim some truths are synthetic and a priori. Use: 3-mark definitions; frame the essay.", "sub": "phil", "topicId": "tp05"}, {"id": "v27c15", "q": "For Scepticism and responses, explain: Philosophical scepticism versus normal incredulity.", "a": "Normal incredulity doubts particular claims for specific reasons (a rumour, a dubious witness). Philosophical scepticism uses general arguments to doubt whole classes of belief, often by raising the standard to certainty. Use: 3-mark question (specimen Q1); framing in the essay.", "sub": "phil", "topicId": "tp10"}, {"id": "v27c16", "q": "For Act utilitarianism (Bentham), explain: Hedonic calculus.", "a": "Seven dimensions for measuring a pleasure or pain: intensity, duration, certainty, propinquity, fecundity, purity, extent. Use: AO1 in 5-mark and 12-mark answers; in essays the calculation objection targets it.", "sub": "phil", "topicId": "tp11"}, {"id": "v27c17", "q": "For Integrated linguistic and literary analysis of any unseen text, explain: Phonetics, phonology and prosody.", "a": "Sound patterning (alliteration, sibilance, plosives, assonance), metre and stress; in transcripts, pauses, stress, intonation, elongation and overlaps. Use: AO1. Only use when the sound changes meaning; examiners warn against overstated claims about assonance.", "sub": "eng", "topicId": "te12"}, {"id": "v27c18", "q": "For Remembered Places: comparing two Paris anthology texts, explain: Labov's narrative categories.", "a": "Abstract, orientation, complicating action, evaluation, resolution, coda. Use: Spoken narratives and memoirs. 'Zara's orientation is minimal, suggesting...'", "sub": "eng", "topicId": "te01"}, {"id": "v27c19", "q": "For The Great Gatsby: narrative voice and point of view, explain: Homodiegetic and retrospective narration (Gérard Genette, Narrative Discourse, 1972).", "a": "Narrator is a character in the story world, telling events after they happened. Use: AO1 framework for every paragraph on voice.", "sub": "eng", "topicId": "tx01"}, {"id": "v27c20", "q": "For The Great Gatsby: setting, symbolism and themes, explain: Geography of the novel.", "a": "East Egg (old money), West Egg (new money), valley of ashes (working class), Manhattan (anonymity and excess). Use: AO2 structure of the fictional world; class mapped onto space.", "sub": "eng", "topicId": "tx01"}, {"id": "v27c21", "q": "For Poetic Voices: question formats and analysing poetic voice, explain: Layers of poetic voice.", "a": "The poet; the persona or speaker; the addressee (named, implied or absent); the reader overhearing. Voices can embed other voices through reported speech. Use: AO1 frame for each poem's opening paragraph.", "sub": "eng", "topicId": "tx04"}, {"id": "v27c22", "q": "For Writing about Society: the re-creative piece, explain: Account receiver.", "a": "The person the narrator is telling; signalled by address, questions, reactions and situation. Use: Missing receivers were the main 2023 weakness in Gatsby monologues.", "sub": "eng", "topicId": "te06"}, {"id": "v27c23", "q": "For Writing about Society: the critical commentary, explain: Narrative perspective beyond first or third person.", "a": "Homodiegetic versus heterodiegetic, focalisation, narrating time, reliability, addressed narration. Use: AO2; the 2023 report rewarded discussion of point of view beyond simple person.", "sub": "eng", "topicId": "te08"}, {"id": "v27c24", "q": "For Dramatic Encounters: A Streetcar Named Desire, explain: Plastic theatre.", "a": "Williams's term, from his production notes to The Glass Menagerie (1945), for non-realistic staging using music, light and symbol to express inner truth. Use: AO3 explanation of the Varsouviana and blue piano.", "sub": "eng", "topicId": "tx02"}, {"id": "v271c01", "q": "Since R v Ireland and Burstow [1998], can silent phone calls amount to an assault?", "a": "Yes. Silent calls can cause V to apprehend immediate unlawful force, and psychiatric injury can be actual or grievous bodily harm.", "sub": "law", "topicId": "tl16"}, {"id": "v271c02", "q": "What did Paris v Stepney BC [1951] add to the breach of duty factors?", "a": "Where C is especially vulnerable to serious harm (here, a one-eyed worker), a reasonable employer takes greater precautions, so the standard of care is raised.", "sub": "law", "topicId": "tl21"}, {"id": "v271c03", "q": "What is the multiple realisability objection used for in philosophy of mind?", "a": "Putnam argued the same mental state (pain) can be realised by different physical systems, which undermines type identity theory and supports functionalism.", "sub": "phil", "topicId": "tp35"}, {"id": "v271c04", "q": "What is Gaunilo’s perfect island objection?", "a": "A parody of Anselm: if his reasoning worked, we could also prove a perfect island exists, which is absurd, so the ontological argument must be flawed.", "sub": "phil", "topicId": "tp21"}, {"id": "v271c05", "q": "What is a premodifier?", "a": "A word, usually an adjective or noun, placed before the head noun in a noun phrase to describe or classify it, as in \"the green light\".", "sub": "eng", "topicId": "te12"}, {"id": "v271c06", "q": "What is free indirect discourse?", "a": "Third-person narration that slips into a character’s own voice and thoughts without quotation marks, blurring narrator and character.", "sub": "eng", "topicId": "te09"}]};
+  const C={cards:[{"id": "v27c01", "q": "What does R v White [1910] 2 KB 124 establish, and where does it fit in an answer on actus reus, mens rea and strict liability?", "a": "Poisoning his mother was not a factual cause of death because she died of a heart attack before the poison took effect: attempted murder only. Use: AO1 definition of but-for causation; AO2 when the facts show the result would have happened anyway.", "sub": "law", "topicId": "tl11"}, {"id": "v27c02", "q": "For Murder, explain: Coke's definition of murder.", "a": "Unlawful killing of a reasonable creature in being under the King's peace with malice aforethought, express or implied. Use: AO1 opening of every murder answer.", "sub": "law", "topicId": "tl13"}, {"id": "v27c03", "q": "What does Coroners and Justice Act 2009 s54 provide?", "a": "D is not guilty of murder if the killing resulted from a loss of self-control with a qualifying trigger and a normal person might have reacted in the same or a similar way. Use: AO1 framework for every answer.", "sub": "law", "topicId": "tl14"}, {"id": "v27c04", "q": "What does Homicide Act 1957 s2 (as substituted by Coroners and Justice Act 2009 s52) provide?", "a": "A person who kills is not guilty of murder if suffering from an abnormality of mental functioning arising from a recognised medical condition, which substantially impaired specified abilities and provides an explanation for the killing. Use: AO1 framework.", "sub": "law", "topicId": "tl14"}, {"id": "v27c05", "q": "What does R v Lamb [1967] 2 QB 981 establish, and where does it fit in an answer on unlawful act and gross negligence manslaughter?", "a": "No unlawful act where friends played with a revolver and neither feared violence: no assault, so no unlawful act manslaughter. Use: AO2 where the base crime is not made out.", "sub": "law", "topicId": "tl15"}, {"id": "v27c06", "q": "What does Criminal Justice Act 1988 s39 provide?", "a": "Common assault and battery are summary offences with a maximum of six months. Use: AO1 base of the ladder.", "sub": "law", "topicId": "tl16"}, {"id": "v27c07", "q": "What does R v Brown [1994] 1 AC 212 establish, and where does it fit in an answer on consent as a defence?", "a": "Consent is no defence to sado-masochistic injuries amounting to ABH or above; public interest decided by majority. Lords Mustill and Slynn dissented on autonomy grounds. Use: AO1 general rule; AO3 autonomy versus paternalism.", "sub": "law", "topicId": "tl40"}, {"id": "v27c08", "q": "What does Criminal Law Act 1967 s3(1) provide?", "a": "A person may use such force as is reasonable in the circumstances in the prevention of crime or in effecting a lawful arrest. Use: AO1 statutory basis alongside common law.", "sub": "law", "topicId": "tl41"}, {"id": "v27c09", "q": "For The tripartite view, Gettier and responses, explain: The tripartite view (justified true belief).", "a": "S knows that p iff p is true, S believes p, and S is justified in believing p. Often traced to Plato's Theaetetus and Meno. Use: Opening AO1 of every question type. Write it as a biconditional.", "sub": "phil", "topicId": "tp01"}, {"id": "v27c10", "q": "For Direct realism, explain: Direct (naive) realism.", "a": "Mind-independent physical objects exist and are immediately perceived, with the properties we perceive them to have. Naive realism holds they have all those properties, including colour, when unperceived. Use: Opening AO1 of every question type.", "sub": "phil", "topicId": "tp07"}, {"id": "v27c11", "q": "For Indirect realism, explain: Indirect (representative) realism.", "a": "Mind-independent objects exist and cause sense data in us; we are immediately aware only of the sense data and perceive objects indirectly through them. Use: Opening AO1 in every question type.", "sub": "phil", "topicId": "tp08"}, {"id": "v27c12", "q": "For Berkeley's idealism, explain: Idealism and esse est percipi.", "a": "Physical objects are collections of ideas; their being consists in being perceived. Minds (spirits) and ideas are all that exist. Use: Opening AO1.", "sub": "phil", "topicId": "tp09"}, {"id": "v27c13", "q": "For Rationalism versus empiricism: innatism, explain: Leading questions.", "a": "Socrates' questions guide the boy at each stage; the boy reasons from what he can see in the drawing, so experience and reasoning, not recollection, explain his answer. Use: AO2 against Plato.", "sub": "phil", "topicId": "tp04"}, {"id": "v27c14", "q": "For Intuition, deduction and the a priori, explain: The three distinctions.", "a": "A priori/a posteriori concerns how we know; analytic/synthetic concerns meaning; necessary/contingent concerns how things could have been. Rationalists claim some truths are synthetic and a priori. Use: 3-mark definitions; frame the essay.", "sub": "phil", "topicId": "tp05"}, {"id": "v27c15", "q": "For Scepticism and responses, explain: Philosophical scepticism versus normal incredulity.", "a": "Normal incredulity doubts particular claims for specific reasons (a rumour, a dubious witness). Philosophical scepticism uses general arguments to doubt whole classes of belief, often by raising the standard to certainty. Use: 3-mark question (specimen Q1); framing in the essay.", "sub": "phil", "topicId": "tp10"}, {"id": "v27c16", "q": "For Act utilitarianism (Bentham), explain: Hedonic calculus.", "a": "Seven dimensions for measuring a pleasure or pain: intensity, duration, certainty, propinquity, fecundity, purity, extent. Use: AO1 in 5-mark and 12-mark answers; in essays the calculation objection targets it.", "sub": "phil", "topicId": "tp11"}, {"id": "v27c17", "q": "For Integrated linguistic and literary analysis of any unseen text, explain: Phonetics, phonology and prosody.", "a": "Sound patterning (alliteration, sibilance, plosives, assonance), metre and stress; in transcripts, pauses, stress, intonation, elongation and overlaps. Use: AO1. Only use when the sound changes meaning; examiners warn against overstated claims about assonance.", "sub": "eng", "topicId": "te12"}, {"id": "v27c18", "q": "For Remembered Places: comparing two Paris anthology texts, explain: Labov's narrative categories.", "a": "Abstract, orientation, complicating action, evaluation, resolution, coda. Use: Spoken narratives and memoirs. 'Zara's orientation is minimal, suggesting...'", "sub": "eng", "topicId": "te01"}, {"id": "v27c19", "q": "For The Great Gatsby: narrative voice and point of view, explain: Homodiegetic and retrospective narration (Gérard Genette, Narrative Discourse, 1972).", "a": "Narrator is a character in the story world, telling events after they happened. Use: AO1 framework for every paragraph on voice.", "sub": "eng", "topicId": "tx01"}, {"id": "v27c20", "q": "For The Great Gatsby: setting, symbolism and themes, explain: Geography of the novel.", "a": "East Egg (old money), West Egg (new money), valley of ashes (working class), Manhattan (anonymity and excess). Use: AO2 structure of the fictional world; class mapped onto space.", "sub": "eng", "topicId": "tx01"}, {"id": "v27c21", "q": "For Poetic Voices: question formats and analysing poetic voice, explain: Layers of poetic voice.", "a": "The poet; the persona or speaker; the addressee (named, implied or absent); the reader overhearing. Voices can embed other voices through reported speech. Use: AO1 frame for each poem's opening paragraph.", "sub": "eng", "topicId": "tx04"}, {"id": "v27c22", "q": "For Writing about Society: the re-creative piece, explain: Account receiver.", "a": "The person the narrator is telling; signalled by address, questions, reactions and situation. Use: Missing receivers were the main 2023 weakness in Gatsby monologues.", "sub": "eng", "topicId": "te06"}, {"id": "v27c23", "q": "For Writing about Society: the critical commentary, explain: Narrative perspective beyond first or third person.", "a": "Homodiegetic versus heterodiegetic, focalisation, narrating time, reliability, addressed narration. Use: AO2; the 2023 report rewarded discussion of point of view beyond simple person.", "sub": "eng", "topicId": "te08"}, {"id": "v27c24", "q": "For Dramatic Encounters: A Streetcar Named Desire, explain: Plastic theatre.", "a": "Williams's term, from his production notes to The Glass Menagerie (1945), for non-realistic staging using music, light and symbol to express inner truth. Use: AO3 explanation of the Varsouviana and blue piano.", "sub": "eng", "topicId": "tx02"}, {"id": "v271c01", "q": "Since R v Ireland and Burstow [1998], can silent phone calls amount to an assault?", "a": "Yes. Silent calls can cause V to apprehend immediate unlawful force, and psychiatric injury can be actual or grievous bodily harm.", "sub": "law", "topicId": "tl16"}, {"id": "v271c02", "q": "What did Paris v Stepney BC [1951] add to the breach of duty factors?", "a": "Where C is especially vulnerable to serious harm (here, a one-eyed worker), a reasonable employer takes greater precautions, so the standard of care is raised.", "sub": "law", "topicId": "tl21"}, {"id": "v271c03", "q": "What is the multiple realisability objection used for in philosophy of mind?", "a": "Putnam argued the same mental state (pain) can be realised by different physical systems, which undermines type identity theory and supports functionalism.", "sub": "phil", "topicId": "tp35"}, {"id": "v271c04", "q": "What is Gaunilo’s perfect island objection?", "a": "A parody of Anselm: if his reasoning worked, we could also prove a perfect island exists, which is absurd, so the ontological argument must be flawed.", "sub": "phil", "topicId": "tp21"}, {"id": "v271c05", "q": "What is a premodifier?", "a": "A word, usually an adjective or noun, placed before the head noun in a noun phrase to describe or classify it, as in \"the green light\".", "sub": "eng", "topicId": "te12"}, {"id": "v271c06", "q": "What did R v Woollin [1999] decide about oblique intent?", "a": "The jury may find intention where death or serious harm was a virtual certainty of D’s actions and D appreciated that this was so.", "sub": "law", "topicId": "tl13"}, {"id": "v271c07", "q": "Name two arguments against jury trial.", "a": "Jurors give no reasons, so verdicts cannot be scrutinised; and they may be influenced by media coverage or the internet (R v Fraill).", "sub": "law", "topicId": "tl05"}, {"id": "v271c08", "q": "What is the multiple realisability objection to behaviourism? (One sentence.)", "a": "Mental states cannot be reduced to fixed behaviours, because the same belief or pain can show itself in endlessly different behaviours depending on other mental states.", "sub": "phil", "topicId": "tp33"}, {"id": "v271c09", "q": "What is the difference between the logical and evidential problem of evil?", "a": "The logical problem claims evil is incompatible with an omnipotent, omnibenevolent God (Mackie); the evidential problem claims the amount of evil makes God improbable (Rowe).", "sub": "phil", "topicId": "tp25"}, {"id": "v271c10", "q": "What is deixis?", "a": "Language whose meaning depends on context, such as person (I, you), place (here, there) and time (now, then) references.", "sub": "eng", "topicId": "te12"}, {"id": "v271c11", "q": "What is a semantic field?", "a": "A group of words linked by a shared area of meaning, such as words connected with wealth or decay.", "sub": "eng", "topicId": "te05"}, {"id": "v271c12", "q": "What is free indirect discourse?", "a": "Third-person narration that slips into a character’s own voice and thoughts without quotation marks, blurring narrator and character.", "sub": "eng", "topicId": "te09"}]};
   C.cards.forEach(k=>Object.assign(k,{ease:2.5,interval:0,due:t,reps:0,lapses:0,history:[]}));
   return C;
 }
@@ -1884,6 +1911,10 @@ function migrateDB(db){
   const fromVer=String(db.appVersion||'1.0.0');
   // v2.4: the Archive as a universe
   // v2.6: duress cases
+  if(fromVer.localeCompare('2.8.0',undefined,{numeric:true})<0){
+    mergeV27(db,todayISO());
+    db.updates=db.updates||[]; if(!db.updates.some(u=>u.v==='2.8.0')) db.updates.unshift({id:uid(),...{"v": "2.8.0", "d": "2026-10-20", "cat": "Added", "t": "Question analyser", "x": "Paste any exam question into Zenith's new Question analyser, or ask Lumen to \"answer this question: ...\". It finds the command word, marks, AO split, timing, parties and issues, matches the right blueprint, and writes a plan and a full draft answer from Akashic's own cases, arguments and quotations. It works offline. Six new flashcards across Law, Philosophy and English."}});
+  }
   if(fromVer.localeCompare('2.7.1',undefined,{numeric:true})<0){
     mergeV27(db,todayISO());
     db.updates=db.updates||[]; if(!db.updates.some(u=>u.v==='2.7.1')) db.updates.unshift({id:uid(),...{"v": "2.7.1", "d": "2026-10-19", "cat": "Improved", "t": "Tidier Zenith", "x": "The Enter Zenith button is now a wide landscape bar on the home screen. Labels, chips and quota numbers in Zenith stay on one line and inside their cards; long question types are listed underneath each blueprint title instead. Six new flashcards across Law, Philosophy and English."}});
@@ -7393,7 +7424,8 @@ const ZIC={
   craft:'<path d="M4 7h16M4 12h10M4 17h13"/>',
   essay:'<path d="M5 4h10l4 4v12H5z"/><path d="M9 12h6M9 16h4M15 4v4h4"/>',
   radar:'<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l6-5"/>',
-  exam:'<path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/>'
+  exam:'<path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/>',
+  qa:'<path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7v.5"/><circle cx="12" cy="17" r=".6" fill="currentColor"/><circle cx="12" cy="12" r="9"/>'
 };
 const zSvg=n=>`<svg viewBox="0 0 24 24" aria-hidden="true">${ZIC[n]}</svg>`;
 const ZMARK='<svg viewBox="0 0 32 32" aria-hidden="true" fill="none"><circle cx="16" cy="16" r="14.5" stroke="#dcb66b" stroke-opacity=".5"/><path d="M3 22h26" stroke="#f08a5d"/><circle cx="16" cy="9" r="3.2" fill="#dcb66b"/><path d="M16 3v2.2M16 12.8V15" stroke="#dcb66b"/></svg>';
@@ -7455,13 +7487,13 @@ function zCrumb(){
   const c=[['Zenith','hub']];
   if(ZS.view==='subject'||ZS.view==='bp')c.push([ZSUB[ZS.sub].name,'subject']);
   if(ZS.view==='bp'){const b=zBp(ZS.bp);if(b)c.push([b.title,'']);}
-  const names={forge:'Phrase forge',craft:'Sentence craft',essay:'Essay forge',radar:'AO radar',exam:'Exam maps'};
+  const names={qa:'Question analyser',forge:'Phrase forge',craft:'Sentence craft',essay:'Essay forge',radar:'AO radar',exam:'Exam maps'};
   if(names[ZS.view])c.push([names[ZS.view],'']);
   return c.map((x,i)=>i<c.length-1?`<button data-z="go" data-v="${x[1]}">${zEsc(x[0])}</button> / `:`<span>${zEsc(x[0])}</span>`).join('');
 }
 function zRender(top){
   const body=$('#znBody');if(!body)return;const y=body.scrollTop;
-  const V={hub:zHub,subject:zSubject,bp:zBlueprint,forge:zForge,craft:zCraft,essay:zEssay,radar:zRadar,exam:zExam};
+  const V={qa:zQA,hub:zHub,subject:zSubject,bp:zBlueprint,forge:zForge,craft:zCraft,essay:zEssay,radar:zRadar,exam:zExam};
   let h;try{h=(V[ZS.view]||zHub)();}catch(e){console.error(e);h=`<div class="zn-p">This view could not load: ${zEsc(e.message)}</div>`;}
   body.innerHTML=`<div class="zn-wrap ${ZS.view==='subject'||ZS.view==='bp'?'zs-'+ZS.sub:''}">${h}</div>`;
   $('#znCrumb').innerHTML=ZS.view==='hub'?'':zCrumb();const as=$('#znAsc');if(as)as.textContent='Ascent '+Math.round(zAscent()*100)+'%';
@@ -7480,7 +7512,7 @@ function zHub(){
     ${subs.map(o=>{const n=o.bps.length||1;return`<circle class="orb" cx="280" cy="280" r="${o.r}"/><g class="rot" style="animation-duration:${o.r*1.1}s">${o.bps.map((b,i)=>{const t=i/n*6.283,x=280+o.r*Math.cos(t),y=280+o.r*Math.sin(t),p=zProg(b);return`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${p>=.8?3.6:2}" fill="${p>=.8?'var(--z'+o.s+')':'rgba(239,231,214,.35)'}"><title>${zEsc(b.title)}</title></circle>`;}).join('')}</g>
       <g class="zs-${o.s}"><circle class="pl" tabindex="0" role="button" aria-label="Open ${ZSUB[o.s].name}" data-z="sub" data-s="${o.s}" cx="${(280+o.r*Math.cos(o.ang)).toFixed(1)}" cy="${(280+o.r*Math.sin(o.ang)).toFixed(1)}" r="12" fill="var(--zc)"/><text x="${(280+o.r*Math.cos(o.ang)).toFixed(1)}" y="${(280+o.r*Math.sin(o.ang)+32).toFixed(1)}" text-anchor="middle">${ZSUB[o.s].name.split(' ')[0]}</text></g>`;}).join('')}
   </svg>`;
-  const inst=[['bp','Blueprints','Every AO, every topic: the quota, the material, the structure.',zAll().length+' plans','subject'],['forge','Phrase forge','Press to strike a new sentence, in any subject and any AO.',((ZEN.gen&&ZEN.gen.frames)||[]).length+' patterns','forge'],['craft','Sentence craft','Short, long and patterned sentences, and how each one earns marks.',(ZEN.craft||[]).length+' devices','craft'],['essay','Essay forge','Turn a blueprint into a timed plan and write against the clock.','','essay'],['radar','AO radar','Paste an answer and see which objectives it is reaching.','','radar'],['exam','Exam maps','Papers, questions, marks, minutes and AO splits.','','exam']];
+  const inst=[['qa','Question analyser','Paste any exam question: decoded, planned and answered from your own content.','','qa'],['bp','Blueprints','Every AO, every topic: the quota, the material, the structure.',zAll().length+' plans','subject'],['forge','Phrase forge','Press to strike a new sentence, in any subject and any AO.',((ZEN.gen&&ZEN.gen.frames)||[]).length+' patterns','forge'],['craft','Sentence craft','Short, long and patterned sentences, and how each one earns marks.',(ZEN.craft||[]).length+' devices','craft'],['essay','Essay forge','Turn a blueprint into a timed plan and write against the clock.','','essay'],['radar','AO radar','Paste an answer and see which objectives it is reaching.','','radar'],['exam','Exam maps','Papers, questions, marks, minutes and AO splits.','','exam']];
   return`<div class="zn-hub"><div><div class="zn-day">Day ${z.days.length} of your ascent · ${Math.round(a*100)}% of all AO checklists complete</div>
     <p class="zn-resolve">${zEsc(res[ZS.resolve]||'Begin where the work is hardest.')}</p>
     <div class="zn-chips" style="margin-bottom:18px"><button class="zn-btn sm" data-z="resolve">Another line</button>${last?`<button class="zn-btn sm pri" data-z="bp" data-id="${last.id}">Continue: ${zEsc(clip(last.title,38))}</button>`:''}</div>
@@ -7660,6 +7692,7 @@ function zExam(){
 /* ---- events ---- */
 function zClick(e){
   const el=e.target.closest('[data-z]');if(!el)return;const a=el.dataset.z,z=zst();
+  if(ZEN_QA_HOOK.click(a,el,z))return;
   if(a==='exit')return closeZenith();
   if(a==='home')return zGo('hub');
   if(a==='go'){if(el.dataset.s)ZS.sub=el.dataset.s;return zGo(el.dataset.v||'hub');}
@@ -7698,6 +7731,7 @@ function zClick(e){
 }
 function zInput(e){
   const el=e.target.closest('[data-zi]');if(!el)return;const k=el.dataset.zi,z=zst();
+  if(ZEN_QA_HOOK.input(k,el))return;
   if(k==='q'&&e.type==='input'){ZS.q=el.value;const q=el.value.toLowerCase(),strands=[];zBps(ZS.sub).forEach(b=>{if(q&&!(b.title+' '+b.strand+' '+(b.summary||'')).toLowerCase().includes(q))return;let g=strands.find(x=>x.n===b.strand);if(!g)strands.push(g={n:b.strand||'Other',b:[]});g.b.push(b);});$('#znStrands').innerHTML=zStrandsHtml(strands);}
   if(k==='fdev'&&e.type==='change'){ZS.forge.dev=el.value;ZS.forge.cur=null;zRender();}
   if(k==='chal'&&ZS.craftChal)ZS.craftChal.mine=el.value;
@@ -7708,6 +7742,8 @@ function zInput(e){
 }
 
 function zenIntent(q,raw,res){
+  {const m=String(raw||'').match(/^\s*(?:please\s+)?(?:answer|break\s*down|decode|plan|unpack|analy[sz]e)\s+(?:this|the|my|an?)?\s*(?:exam\s+|essay\s+|past[- ]paper\s+)?question\s*[:\-–]?\s*([\s\S]{8,})$/i);
+   if(m){const R=qaAnalyse(m[1].trim(),'');if(R){ZS.qa={text:m[1].trim(),sub:'',res:R};res.say=`<b>${esc(ZSUB[R.sub].name)}</b> · ${esc(R.cmd.w)} · ${R.marks?R.marks+' marks':'marks not given'}${R.minutes?' · about '+R.minutes+' min':''}. ${R.bp?'Best blueprint: <b>'+esc(R.bp.title)+'</b>. ':''}${esc(R.demands[0]||'')}`;res.acts.push({label:'Open the full answer',do:'zenith',arg:{view:'qa'}});return res;}}}
   const t=String(raw||q||'').toLowerCase();
   if(!/\b(zenith|ao plans?|blueprints?|phrase (?:generator|forge)|sentence (?:generator|craft)|essay forge|ao radar|exam maps?|how (?:do i|to) (?:hit|get|fulfil+|meet) (?:all )?(?:the )?aos?)\b/.test(t))return null;
   const view=/phrase|sentence gen/.test(t)?'forge':/craft/.test(t)?'craft':/essay forge/.test(t)?'essay':/radar/.test(t)?'radar':/exam map/.test(t)?'exam':/blueprint|ao|hit|meet|fulfil/.test(t)?'subject':'hub';
@@ -7716,6 +7752,275 @@ function zenIntent(q,raw,res){
   res.say='Zenith holds '+zAll().length+' AO blueprints across Law, Philosophy and English, with the phrase forge, sentence craft, essay forge and AO radar.';
   res.acts.push({label:'Enter Zenith',do:'zenith',arg:{view}});return res;
 }
+
+/* ============ QUESTION ANALYSER (v2.8): decode an exam question and answer it from the app's own content ============ */
+const QA_STOP=new Set('the a an of to in on and or is are was were be been for with what how why does do did define explain me about tell show give i my it this that as by from at which who whom whose into their there these those its his her he she they them we you your our can could should would will shall may might must not no yes than then so such any all some each other more most less least very also only own same both either neither whether if when while where after before because although though however answer question marks mark'.split(' '));
+const qaTok=s=>(String(s||'').toLowerCase().match(/[a-z][a-z’'\-]+/g)||[]).map(t=>t.replace(/['’]s$/,'').replace(/^['’\-]+|['’\-]+$/g,'')).filter(t=>t.length>2&&!QA_STOP.has(t));
+const QA_GENERIC=new Set('significance explore presents present presented between view false theory convincing need using use used advantages disadvantages extent statement evaluate discuss explain assess analyse analyze consider advise describe outline state identify compare examine most least best main ways way different points point law text writer author reader respond responds response problem avoids show shows'.split(' '));
+const qaStem=t=>t.replace(/(ations?|ness|ments?|ings?|ed|es|s|ly|al)$/,'').slice(0,7);
+const QA_CMD=[
+  {re:/\bto what extent\b/i,w:'To what extent',type:'eval',does:'Weigh the arguments on both sides and reach a judgement about degree. A yes-or-no answer caps the mark.'},
+  {re:/\bhow far\b/i,w:'How far',type:'eval',does:'Judge degree: how strongly the claim holds, and where it stops holding.'},
+  {re:/\bcritically (?:evaluate|assess|discuss|analyse|analyze)\b/i,w:'Critically evaluate',type:'eval',does:'Test the claim against its strongest objections and give a reasoned verdict.'},
+  {re:/\b(?:advise|(?:criminal|civil|legal|potential) liability|liability of|legal position|rights of|any claims?)\b/i,w:'Advise / liability',type:'problem',does:'Apply the law to the facts for each party, offence or tort in turn, and reach a conclusion on liability.'},
+  {re:/\bevaluate\b/i,w:'Evaluate',type:'eval',does:'Judge strengths and weaknesses and reach a supported conclusion.'},
+  {re:/\bassess\b/i,w:'Assess',type:'eval',does:'Weigh the significance of the points and reach a reasoned judgement.'},
+  {re:/\bdiscuss\b/i,w:'Discuss',type:'eval',does:'Explore the issue from more than one side and conclude.'},
+  {re:/\bcompare\b/i,w:'Compare',type:'compare',does:'Set the texts or theories side by side, showing similarities and differences in every paragraph.'},
+  {re:/\b(?:explore how|explore the significance|explore|examine how|analyse how|analyze how|how and why|how does .{2,60} present|presents?)\b/i,w:'Explore how',type:'analyse',does:'Analyse the methods the writer uses and how they shape meaning, with context.'},
+  {re:/\banaly[sz]e\b/i,w:'Analyse',type:'analyse',does:'Break the material down and explain how its parts create meaning or effect.'},
+  {re:/\bexplain\b/i,w:'Explain',type:'explain',does:'Give clear, accurate reasons and logical links, with no evaluation unless it is asked for.'},
+  {re:/\b(?:describe|outline)\b/i,w:'Describe / outline',type:'explain',does:'Set out the main points accurately and concisely.'},
+  {re:/\b(?:what is|what are|what does|define|state|identify)\b/i,w:'Define / state',type:'define',does:'Give a precise, complete definition or fact. No evaluation.'},
+  {re:/^\s*(?:is|are|does|do|can|should|has|have)\b/i,w:'Is it so?',type:'eval',does:'Take a position on the claim, defend it against objections and conclude.'}
+];
+const QA_CUES=[
+  [/\b(kill\w*|died|dies|death|dead|fatal\w*|murder\w*)\b/i,['zl_murder','zl_involuntary_mans']],
+  [/\b(provok\w*|lost (?:his|her|their) temper|snapped|loss of control|taunt\w*|fear of serious violence)\b/i,['zl_loss_of_control']],
+  [/\b(depress\w*|schizo\w*|mental (?:illness|disorder|condition)|abnormality of mental|psychos\w*|ptsd|bipolar)\b/i,['zl_diminished']],
+  [/\b(punch\w*|hit|hits|slap\w*|kick\w*|push\w*|shov\w*|bruis\w*|cut|wound\w*|break\w* (?:his|her)|broke (?:his|her)|fractur\w*|stab\w*|assault\w*|threw|glass\w*)\b/i,['zl_nonfatal']],
+  [/\b(consent\w*|agreed to|horseplay|tattoo\w*|piercing|boxing|rugby|football|sport|surgery|game)\b/i,['zl_consent']],
+  [/\b(defend\w* (?:him|her|them)sel\w*|self-defen\w*|intruder|in fear for|to protect (?:him|her)sel\w*|prevent (?:a|the) crime)\b/i,['zl_self_defence']],
+  [/\b(threaten\w*|threat\w*|or else|unless (?:he|she|they)|forced (?:him|her|them) to|at gunpoint|blackmail\w*)\b/i,['zl_duress_necessity']],
+  [/\b(diabet\w*|insulin|epilep\w*|sleepwalk\w*|seizure|blackout|blacked out|concussion|hypoglyc\w*|hyperglyc\w*|automatism|swarm)\b/i,['zl_insanity_automatism']],
+  [/\b(drunk|drink\w*|alcohol|intoxicat\w*|drugs?|spiked|pints?|vodka|cocaine|cannabis|valium|high on)\b/i,['zl_intoxication']],
+  [/\b(stole|steal\w*|took (?:his|her|their|a|the)|theft|shoplift\w*|wallet|purse|handbag|robb\w*|burgl\w*|broke into|entered (?:the|a|his|her) (?:house|flat|shop|building|room)|trespass\w*)\b/i,['zl_theft_robbery_burglary']],
+  [/\b(attempt\w*|tried to|was arrested before)\b/i,['zl_attempts']],
+  [/\b(attack\w* (?:him|her|them)|about to attack|wrongly (?:thinks|believes|thought|believed)|mistakenly (?:thinks|believes|thought|believed))\b/i,['zl_self_defence']],
+  [/\b(negligen\w*|careless\w*|crash\w*|collid\w*|accident|duty of care|reasonable (?:man|person))\b/i,['zl_tort_duty','zl_tort_breach','zl_tort_causation']],
+  [/\b(nervous shock|psychiatric|ptsd|witness\w* the|economic loss|lost profits?|negligent (?:advice|misstatement))\b/i,['zl_tort_psych_econ']],
+  [/\b(visitor\w*|trespasser\w*|premises|occupier\w*|slipped|fell through|warning sign)\b/i,['zl_tort_occupiers']],
+  [/\b(noise|smell\w*|smoke|fumes|neighbour\w*|nuisance|escaped|flood\w*|rylands)\b/i,['zl_tort_land']],
+  [/\b(employee|employer|employed by|delivery driver|course of (?:his|her|their) employment|independent contractor)\b/i,['zl_tort_vicarious']],
+  [/\b(gatsby|nick carraway|daisy|tom buchanan|fitzgerald|west egg|east egg|green light|valley of ashes|jordan baker|myrtle)\b/i,['ze_gatsby_voice','ze_gatsby_setting_symbol']],
+  [/\b(narrat\w*|narrative voice|point of view|nick)\b/i,['ze_gatsby_voice']],
+  [/\b(setting|place|symbol\w*|motif)\b/i,['ze_gatsby_setting_symbol']],
+  [/\b(streetcar|blanche|stanley|stella|mitch|williams|kowalski|belle reve)\b/i,['ze_streetcar']],
+  [/\b(paris|anthology|remembered places)\b/i,['ze_remembered_places']],
+  [/\b(poem|poet\w*|poetic|stanza|verse)\b/i,['ze_poetic_voices']],
+  [/\b(re-creative|recreative|recast|transform\w*|rewrite)\b/i,['ze_wos_recreative']],
+  [/\b(commentary)\b/i,['ze_wos_commentary']],
+  [/\b(investigation|nea|making connections)\b/i,['ze_nea']],
+  [/\b(unseen|this extract|the extract|this text|text a|text b)\b/i,['ze_core_integrated_method']],
+  [/\b(knowledge|justified true belief|gettier|tripartite)\b/i,['zp_tripartite_gettier']],
+  [/\b(perceiv\w*|perception|sense[- ]data|physical objects)\b/i,['zp_direct_realism','zp_indirect_realism','zp_berkeley_idealism']],
+  [/\b(innate|tabula rasa|concept empiricism)\b/i,['zp_innatism']],
+  [/\b(a priori|intuition|deduction|cogito|hume'?s fork)\b/i,['zp_intuition_deduction']],
+  [/\b(scepticism|skepticism|sceptic\w*|dreaming argument|evil demon)\b/i,['zp_scepticism']],
+  [/\b(utilitarian\w*|greatest happiness|hedonic calculus)\b/i,['zp_act_util','zp_rule_util_mill']],
+  [/\b(kant\w*|categorical imperative|deontolog\w*|duty)\b/i,['zp_kant']],
+  [/\b(aristotle|virtue|eudaimonia|doctrine of the mean)\b/i,['zp_aristotle']],
+  [/\b(eating animals|simulated killing|lying|stealing|telling lies)\b/i,['zp_applied']],
+  [/\b(moral realism|naturalism|open question|is[- ]ought)\b/i,['zp_realism']],
+  [/\b(error theory|emotivism|prescriptivism|anti-realism)\b/i,['zp_antirealism']],
+  [/\b(omnipoten\w*|omniscien\w*|euthyphro|divine attributes|paradox of the stone)\b/i,['zp_divine_attributes']],
+  [/\b(ontological)\b/i,['zp_ontological']],[/\b(?:god'?s? existence|existence of god|god exists?)\b[\s\S]{0,60}\b(?:a priori|proven?|proof|by reason)\b|\ba priori\b[\s\S]{0,60}\bgod\b/i,['zp_ontological','zp_ontological','zp_ontological']],[/\b(design argument|teleological|paley)\b/i,['zp_teleological']],[/\b(cosmological|first cause|contingen\w*)\b/i,['zp_cosmological']],
+  [/\b(problem of evil|theodicy|suffering|free will defence)\b/i,['zp_problem_of_evil']],[/\b(religious language|verification\w*|falsification|meaningful)\b/i,['zp_religious_language']],
+  [/\b(substance dualism|dualism|interaction problem)\b/i,['zp_substance_dualism','zp_property_dualism']],[/\b(zombie|knowledge argument|mary|qualia|property dualism)\b/i,['zp_property_dualism']],
+  [/\b(behaviourism|behaviorism)\b/i,['zp_behaviourism']],[/\b(identity theory|mind[- ]brain)\b/i,['zp_type_identity']],[/\b(functionalism|multiple realisab\w*)\b/i,['zp_functionalism']],
+  [/\b(eliminativ\w*|folk psychology)\b/i,['zp_eliminative_materialism']],[/\b(other minds)\b/i,['zp_other_minds_interaction']]
+];
+const QA_SUBKW={law:/\b(law|legal|liable|liability|offence|defendant|claimant|court|statute|act \d{4}|tort|crime|criminal|advise|judge|jury|parliament|precedent|rights?)\b/gi,
+  phil:/\b(philosoph\w*|argument|theory|knowledge|god|mind|moral\w*|ethic\w*|true|correct|convincing|succeed\w*|exist\w*|believe|belief)\b/gi,
+  eng:/\b(writer|author|text|novel|play|poem|poet|presents?|language|narrat\w*|reader|audience|extract|methods?|fitzgerald|williams)\b/gi};
+const QA_NOTNAME=new Set('The A An He She They It His Her Their When After Before While During Then Later Meanwhile Unknown As At In On Of For From With Without If Although Because However One Two Three Four Five Next Last This That These Those There Here Discuss Advise Consider Evaluate Explain Assess Analyse Analyze Describe Outline State Identify Compare Explore Examine To What How Why Is Are Does Do Can Should Has Have Law Act Court Crown Supreme Appeal High Criminal Civil Police Parliament Article Section Monday Tuesday Wednesday Thursday Friday Saturday Sunday January February March April May June July August September October November December English England Wales British UK Christmas Easter God Mr Mrs Ms Dr Sir Lord Lady R I'.split(' '));
+function qaParties(t){
+  const counts={};const re=/\b([A-Z][a-zA-Z]{1,14})\b/g;let m;
+  const caseSpans=[];let cm;const cre=/\b(?:R|[A-Z][\w'’&.-]+) v\.? [A-Z][\w'’&.-]+/g;while((cm=cre.exec(t)))caseSpans.push([cm.index,cm.index+cm[0].length]);
+  while((m=re.exec(t))){if(QA_NOTNAME.has(m[1]))continue;if(caseSpans.some(s=>m.index>=s[0]&&m.index<s[1]))continue;counts[m[1]]=(counts[m[1]]||0)+1;}
+  const all=Object.keys(counts).sort((a,b)=>t.indexOf(a)-t.indexOf(b));
+  let def=[];const dm=t.match(/(?:advise|liability of|position of|rights of)\s+((?:[A-Z][a-zA-Z]+(?:'s)?(?:,\s*|\s+and\s+|\s*&\s*)?)+)/i);
+  const pm=t.match(/\b([A-Z][a-zA-Z]+)['’]s (?:criminal |civil |legal |potential )?liability/);if(!dm&&pm&&all.includes(pm[1]))def=[pm[1]];
+  if(dm)def=(dm[1].match(/[A-Z][a-zA-Z]+/g)||[]).filter(n=>all.includes(n));
+  return{all:all.slice(0,8),defendants:def.length?def:all.slice(0,2)};
+}
+function qaSentences(t){return String(t).replace(/\s+/g,' ').split(/(?<=[.!?])\s+(?=[A-Z“"'])/).map(s=>s.trim()).filter(Boolean);}
+function qaMarks(t){const m=t.match(/\[\s*(\d{1,2})\s*marks?\s*\]|\(\s*(\d{1,2})\s*marks?\s*\)|\b(\d{1,2})[- ]marks?\b|\bfor (\d{1,2}) marks\b/i);return m?+(m[1]||m[2]||m[3]||m[4]):null;}
+function qaExamQs(sub){const out=[];zarr((ZEN[sub]||{}).examMap).forEach(p=>zarr(p.sections).forEach(s=>zarr(s.questions).forEach(q=>out.push(Object.assign({paper:p.paper,section:s.name},q)))));return out;}
+function qaAnalyse(text,subHint){
+  const t=String(text||'').trim();if(!t)return null;
+  const lc=t.toLowerCase(),toks=qaTok(t),stems=new Set(toks.map(qaStem));
+  /* command word */
+  let cmd=null;for(const c of QA_CMD){if(c.re.test(t)){cmd=c;break;}}
+  if(!cmd)cmd={w:'(implied)',type:'eval',does:'No command word found, so treat it as a discussion: argue a line and conclude.'};
+  const parties=qaParties(t);const sents=qaSentences(t);QA_NAMES=new Set(parties.all);
+  /* subject */
+  const sc={law:0,phil:0,eng:0};for(const s in QA_SUBKW)sc[s]+=(t.match(QA_SUBKW[s])||[]).length;
+  const cueHits=[];QA_CUES.forEach(([re,ids])=>{const m=t.match(re);if(m)ids.forEach(id=>cueHits.push({id,word:m[0]}));});
+  cueHits.forEach(h=>{const b=zBp(h.id);if(b)sc[b._sub]+=2;});
+  if(parties.all.length>=1&&/\b(advise|liab|offence|charged|guilty|sue|claim)\w*/i.test(t))sc.law+=4;
+  const cueIds={};cueHits.forEach(h=>{cueIds[h.id]=(cueIds[h.id]||0)+1;});
+  const scoreBp=b=>{let s=0;const hit=new Set();
+    const tt=[...new Set(qaTok(b.title).map(qaStem))],tw=12/Math.sqrt(Math.max(1,tt.length));tt.forEach(w=>{if(stems.has(w)){s+=tw;hit.add(w);}});
+    zarr(b.topicIds).forEach(id=>{const tp=(DB.topics||[]).find(x=>x.id===id);if(tp)qaTok(tp.name).forEach(w=>{if(stems.has(qaStem(w))){s+=2;hit.add(qaStem(w));}});});
+    let ms=0;zarr(b.materials).forEach(m=>qaTok(m.name).forEach(w=>{if(w.length>3&&stems.has(qaStem(w))&&ms<10){ms+=2;hit.add(qaStem(w));}}));s+=ms;
+    let ss=0;qaTok(b.summary).forEach(w=>{if(stems.has(qaStem(w))&&ss<5)ss++;});s+=ss;
+    if(cueIds[b.id])s+=8*cueIds[b.id];return{b,s,hit:[...hit]};};
+  const allScored=ZSUBS.flatMap(s=>zBps(s).map(scoreBp)).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);
+  ZSUBS.forEach(s=>{const top=allScored.find(x=>x.b._sub===s);if(top)sc[s]+=top.s/3;});
+  let sub=subHint&&ZSUBS.includes(subHint)?subHint:Object.keys(sc).sort((a,b)=>sc[b]-sc[a])[0];
+  /* question type refinement */
+  let type=cmd.type;const marks0=qaMarks(t);
+  const scenario=sub==='law'&&(type==='problem'||(parties.all.length>=1&&(sents.length>=3||/\b(liab\w*|advise|guilty|offence|charged|sue|claim)\b/i.test(t))&&!/\b(evaluate|assess|critically|to what extent|how far)\b/i.test(t)));
+  if(scenario)type='problem';
+  const scored=allScored.filter(x=>x.b._sub===sub);
+  let bp=scored[0]?scored[0].b:null;
+  /* issues for problem questions: every cued blueprint in the subject */
+  const R0={};let issues=[];if(type==='problem'){const seen=new Set();cueHits.forEach(h=>{const b=zBp(h.id);if(b&&b._sub===sub&&!seen.has(b.id)){seen.add(b.id);issues.push({b,word:h.word,fact:sents.find(s=>s.toLowerCase().includes(h.word.toLowerCase()))||''});}});
+    const order=['zl_murder','zl_involuntary_mans','zl_nonfatal','zl_theft_robbery_burglary','zl_attempts','zl_armr_strict','zl_loss_of_control','zl_diminished','zl_self_defence','zl_duress_necessity','zl_consent','zl_intoxication','zl_insanity_automatism'];
+    issues.sort((a,b)=>{const ia=order.indexOf(a.b.id),ib=order.indexOf(b.b.id);return(ia<0?99:ia)-(ib<0?99:ib);});
+    if(issues.length>1&&issues.some(i=>i.b.id==='zl_murder')&&!/\b(intend\w*|meant to|wanted to kill)\b/i.test(t)&&issues.some(i=>i.b.id==='zl_involuntary_mans')){}
+    const tortish=/\b(sue|claim\w*|compensation|damages|negligen\w*|duty of care|employer|employee|delivery driver|occupier|visitor|nuisance|neighbour\w*|psychiatric|crash\w*)\b/i.test(t)&&!/\b(criminal|guilty|offence|charged|murder|manslaughter)\b/i.test(t);
+    issues=issues.filter(i=>tortish?/tort/.test(i.b.strand.toLowerCase())||/^zl_tort/.test(i.b.id):!/^zl_tort/.test(i.b.id));
+    R0.tort=tortish;if(issues.length)bp=issues[0].b;
+    issues=issues.slice(0,4);if(!issues.length&&bp)issues=[{b:bp,word:'',fact:''}];}
+  /* structure */
+  let st=null;if(bp){const sts=zarr(bp.structures);const want=marks0;
+    const typeRe=type==='problem'?/problem|scenario/i:type==='define'?/3-mark|defin|what is/i:type==='explain'?/explain|AO1|5-mark|12-mark|8-mark|10-mark/i:/essay|evaluat|discuss|AO3|25-mark|20-mark|significance|comparison|commentary|transformation|investigation|Dramatic/i;
+    const ss=s=>{let v=0;if(want&&new RegExp('\\b'+want+'-mark').test(s.for))v+=10;if(typeRe.test(s.for))v+=5;if(type!=='problem'&&/problem|scenario/i.test(s.for))v-=6;qaTok(s.for).forEach(w=>{if(stems.has(qaStem(w))&&!QA_GENERIC.has(w))v+=2;});return v;};
+    st=sts.slice().sort((a,b)=>ss(b)-ss(a))[0]||null;}
+  /* marks, AO split, minutes from the exam map */
+  let marks=marks0||(st&&+((st.for.match(/(\d{1,2})-mark/)||[])[1]))||null;
+  if(!marks&&sub==='phil')marks=type==='define'?3:type==='explain'?(/\band\b.*\b(respond|how)\b/i.test(t)?12:5):25;
+  const eq=qaExamQs(sub);let em=null;
+  if(marks){const c=eq.filter(q=>+q.marks===marks);const kw=type==='problem'?/problem|scenario/i:/essay|discuss|evaluat|extended|AO3|AO2 20/i;em=c.find(q=>kw.test(q.type))||c[0]||null;}
+  const ao=em&&em.ao?em.ao:sub==='law'?(type==='problem'?{AO1:10,AO2:15}:type==='explain'||type==='define'?{AO1:marks||10}:{AO1:10,AO3:15}):sub==='phil'?(marks>=25?{AO1:5,AO2:20}:{AO1:marks||5}):{AO1:'',AO2:'',AO3:''};
+  const minutes=(em&&em.minutes)||(st&&+st.minutes)||(marks?Math.round(marks*(sub==='phil'?1.8:sub==='eng'?1.6:1.2)):null);
+  /* focus words: content words that are not the command */
+  const cmdWords=new Set(qaTok(cmd.w));const focus=[...new Set(toks.filter(w=>!cmdWords.has(w)&&!QA_GENERIC.has(w)&&!parties.all.map(p=>p.toLowerCase()).includes(w)))].slice(0,10);
+  /* evidence from the whole app */
+  let ev=[];try{ev=archiveSearch(buildArchive(),focus.slice(0,6).join(' '),{}).filter(r=>(r.sub===sub||!r.sub)&&!['card','note','topic','word'].includes(r.kind)).slice(0,10);}catch(e){}
+  const quote=(t.match(/[‘'“"]([^’'”"]{12,220})[’'”"]/)||[])[1]||'';
+  if(sub!=='law'){parties.all=[];parties.defendants=[];}
+  const R={tort:!!R0.tort,text:t,sub,cmd,type,marks,ao,minutes,em,parties,sents,bp,alt:scored.slice(1,4).map(x=>x.b),st,issues,focus,ev,quote,scores:sc};
+  R.answer=qaWrite(R);R.demands=qaDemands(R);
+  return R;
+}
+const qaCore=(b,kinds,n)=>zarr(b&&b.materials).filter(m=>(!kinds||kinds.includes(m.kind))).sort((a,b)=>(b.core?1:0)-(a.core?1:0)).slice(0,n||99);
+const qaShort=n=>String(n||'').split(/\s*[\[(]\d{4}/)[0].split(/\s*\[/)[0].replace(/[;,]\s*$/,'').trim();
+const qaClean=s=>qaCap(String(s||'').replace(/^\s*(verdict|claim|support|counter|response|objection|reply)\s*[:.]\s*/i,''));
+const QA_LOWOK=new Set('the a an this that these those it its there here he she they his her their we our you your one some any many most later after before when while during if although because once then in on at by for from with without as since until consent force mere an every each no not only both either neither such its liability intention law statute parliament judges courts juries jurors'.split(' '));
+let QA_PROPER=null;
+function qaProper(){if(QA_PROPER)return QA_PROPER;const S=new Set('Privy Parliament Supreme House Court Lords Crown Commission Act Acts Article Articles Convention European English England Wales British Christian God Gatsby Nick Daisy Tom Myrtle Jordan Blanche Stanley Stella Mitch Williams Fitzgerald Paris Jazz American Volstead Kant Kantian Aristotle Aristotelian Mill Bentham Descartes Locke Hume Berkeley Leibniz Plato Russell Gettier Moore Ayer Hare Mackie Anselm Malcolm Gaunilo Aquinas Paley Swinburne Plantinga Hick Flew Mitchell Wittgenstein Ryle Hempel Place Smart Putnam Chalmers Jackson Churchland Nagel Searle Block Augustine Irenaeus Rowe Lord Lady Justice Denning Hoffmann Bingham Mustill Slynn Law Commission CPS Crown Prosecution Service UK EU ECHR HRA'.split(' '));
+  (DB.cases||[]).forEach(c=>String(c.name).split(/[^A-Za-z']+/).forEach(w=>{if(/^[A-Z][a-z]/.test(w)&&w.length>2&&!QA_LOWOK.has(w.toLowerCase()))S.add(w);}));
+  zAll().forEach(b=>zarr(b.materials).filter(m=>/case|scholar|critic/.test(m.kind)).forEach(m=>String(m.name).split(/[^A-Za-z']+/).forEach(w=>{if(/^[A-Z][a-z]/.test(w)&&w.length>2&&!QA_LOWOK.has(w.toLowerCase()))S.add(w);})));
+  return QA_PROPER=S;}
+let QA_NAMES=new Set();
+const qaLow=s=>{s=String(s||'');const w=(s.match(/^[A-Za-z']+/)||[''])[0];if(!/^[A-Z][a-z]/.test(s)||QA_NAMES.has(w)||qaProper().has(w)||qaProper().has(w.replace(/'s$/,'')))return s;return s[0].toLowerCase()+s.slice(1);};
+const qaCap=s=>{s=String(s||'');return s?s[0].toUpperCase()+s.slice(1):s;};
+const qaDot=s=>{s=String(s||'').trim();return s&&!/[.!?]$/.test(s)?s+'.':s;};
+function qaDemands(R){
+  const d=[];d.push(R.cmd.does);
+  const aoTxt=Object.entries(R.ao||{}).filter(x=>x[1]!=='').map(x=>x[0]+(x[1]?' '+x[1]:'')).join(' + ');
+  if(R.marks)d.push(`${R.marks} marks${aoTxt?' ('+aoTxt+')':''}${R.minutes?', about '+R.minutes+' minutes':''}. Spend your words in proportion to the AO weighting.`);
+  if(R.type==='problem')d.push(`Treat ${R.parties.defendants.length?R.parties.defendants.join(' and '):'each defendant'} separately. For each issue: state the rule with authority, apply it to the exact facts, then conclude on liability.`);
+  if(R.sub==='phil'&&R.marks>=25)d.push('Only 5 marks are for explanation. Put most of your time into objections, responses and a justified verdict.');
+  if(R.sub==='phil'&&R.marks&&R.marks<25)d.push('This is pure AO1: precise, connected explanation. Do not evaluate.');
+  if(R.quote)d.push(`The question quotes “${clip(R.quote,90)}”. Your thesis must respond to that claim directly.`);
+  if(R.focus.length)d.push('Keep returning to the focus words: '+R.focus.slice(0,5).join(', ')+'.');
+  if(R.bp){const p=zarr(R.bp.pitfalls)[0];if(p)d.push('Avoid: '+qaLow(p)+(/[.]$/.test(p)?'':'.'));}
+  return d;
+}
+function qaWrite(R){
+  const b=R.bp,P=[];const add=(h,t)=>P.push({h,t});if(!b){add('No match','The analyser could not match this question to a blueprint. Add a key topic word (for example "consent", "functionalism" or "Gatsby") and try again.');return P;}
+  const chains=zarr(b.evaluation),stat=qaCore(b,['statute'],2),cases=qaCore(b,['case'],6),args=qaCore(b,['argument','objection','response','concept','scholar','critic'],6);
+  const nChains=Math.max(2,Math.min(4,R.marks?Math.round(R.marks/7):3));
+  if(R.sub==='law'&&R.type==='problem'){
+    let D=R.parties.defendants[0]||'the defendant',V=R.parties.all.find(n=>!R.parties.defendants.includes(n))||'the victim';
+    if(R.tort){const C=R.parties.defendants[0]||'the claimant';const Ds=R.parties.all.filter(n=>n!==C);
+      add('Introduction',`This answer considers whether ${C} has a claim against ${Ds.join(' and ')||'the defendant'}. Each element is taken in turn: the rule, its application to the facts, and a conclusion.`);
+      R.issues.forEach((is,k)=>{const ib=is.b,ic=qaCore(ib,['case'],3),ist=qaCore(ib,['statute'],1)[0];const ao2=zarr((zarr(ib.aos).find(a=>a.ao==='AO2')||{}).checklist).slice(0,3);
+        add(`Issue ${k+1}: ${ib.title}`,`**Issue.** ${qaDot(ib.title.replace(/^Negligence: /,'')+' for '+C+"'s claim against "+(Ds[0]||'the defendant'))}\n\n**Rule.** ${[ist?`${ist.name} provides that ${qaLow(qaDot(ist.point))}`:'',...ic.map(c=>`In ${qaShort(c.name)}, ${qaLow(qaDot(c.point))}`)].filter(Boolean).join(' ')}\n\n**Application.** ${is.fact?'On the facts, '+qaLow(qaDot(is.fact))+' ':''}${ao2.map(x=>`[${x.replace(/[.]$/,'')}]`).join(' ')}\n\n**Conclusion.** This element is [likely / unlikely] to be satisfied because [reason from the facts].`);});
+      if(R.parties.all.length>2||/employ|driver|for [A-Z]/.test(R.text))add('Vicarious liability',`If ${Ds[0]||'the defendant'} was an employee acting in the course of employment, ${Ds[1]||'the employer'} may be vicariously liable [apply the close connection test].`);
+      add('Overall conclusion',`${C} is [likely / unlikely] to succeed, and could recover [damages for …].`);return P;}
+    add('Introduction',`This answer considers the liability of ${R.parties.defendants.join(' and ')||'the defendant'}${R.issues.length?' for '+R.issues.map(i=>qaLow(i.b.title)).join(', '):''}. Each issue is taken in turn: the rule, its application to the facts, and a conclusion.`);
+    R.issues.forEach((is,k)=>{const ib=is.b,ist=qaCore(ib,['statute'],1)[0],ic=qaCore(ib,['case'],3);
+      const rule=[ist?`${ist.name} provides that ${qaLow(qaDot(ist.point))}`:'',...ic.map(c=>`In ${qaShort(c.name)}, ${qaLow(qaDot(c.point))}`)].filter(Boolean).join(' ');
+      const ao2=zarr((zarr(ib.aos).find(a=>a.ao==='AO2')||{}).checklist).slice(0,3);
+      add(`Issue ${k+1}: ${ib.title}`,
+        `**Issue.** The question is whether ${D} ${/defen|consent|duress|intox|insan|loss of control|diminish/i.test(ib.title)?'can rely on '+qaLow(ib.title):'is liable for '+qaLow(ib.title)}${is.fact?', given that '+qaLow(is.fact.replace(/[.]$/,'')):''}.\n\n**Rule.** ${rule||'[State the rule with authority.]'}\n\n**Application.** ${is.fact?'On the facts, '+qaLow(qaDot(is.fact))+' ':''}${ao2.map(x=>`[${x.replace(/[.]$/,'')}]`).join(' ')}${ic[0]?` Applying ${qaShort(ic[0].name)}, ${D}'s conduct [does / does not] meet this requirement because [reason from the facts].`:''}\n\n**Conclusion.** ${D} is therefore [likely / unlikely] to be ${/defen|consent|duress|intox|insan|loss of control|diminish/i.test(ib.title)?'able to rely on this':'liable for this'}, although [strongest counter-argument].`);});
+    add('Overall conclusion',`Bringing the issues together, ${D} is most likely to be [liable for … / acquitted of …]. ${V!=='the victim'?'The outcome for '+V+' depends on [remaining issue].':''}`.trim());
+    return P;}
+  if(R.sub==='law'){
+    const evalQ=R.type==='eval'||/AO3/.test(JSON.stringify(R.ao));
+    add('Introduction',`${b.summary.split(/(?<=\.)\s/)[0]} ${evalQ&&chains[0]?'This answer argues that '+qaLow(qaDot(qaClean(chains[0].verdict))):'This answer explains the key rules and authorities.'}`);
+    add('The law (AO1)',[...stat.map(s=>`${s.name}: ${qaDot(s.point)}`),...cases.slice(0,evalQ?4:5).map(c=>`In ${qaShort(c.name)}, ${qaLow(qaDot(c.point))}`)].join(' '));
+    if(evalQ){chains.slice(0,nChains).forEach((c,i)=>add(`Evaluation ${i+1} (AO3)`,`${qaDot(qaClean(c.claim))} ${qaDot(qaClean(c.support))} However, ${qaLow(qaDot(qaClean(c.counter)))} ${qaDot(qaClean(c.verdict))}`));
+      const rep=qaCore(b,['report'],1)[0];add('Conclusion',`Overall, ${chains.slice(0,nChains).map(c=>qaLow(qaClean(c.verdict).replace(/[.]$/,''))).slice(0,2).join('; and ')}.${rep?' '+rep.name+' points the way forward: '+qaLow(qaDot(rep.point)):''}`);}
+    return P;}
+  if(R.sub==='phil'){
+    const m=R.marks||25;const fs=R.focus.map(qaStem);const ov=x=>qaTok(x).filter(w=>fs.includes(qaStem(w))).length;
+    const ranked=args.slice().sort((a,b)=>(ov(b.name)*3+ov(b.point)+(b.core?1:0))-(ov(a.name)*3+ov(a.point)+(a.core?1:0)));const top=ranked[0],t2=ranked[1];args.splice(0,args.length,...ranked);
+    const tids=zarr(b.topicIds);const argDB=(DB.argumentsList||[]).filter(a=>tids.includes(a.topicId)).map(a=>({a,s:ov(a.name)*2+ov(a.premises)})).sort((x,y)=>y.s-x.s).map(x=>x.a).find(a=>ov(a.name+' '+a.premises)>0)||null;
+    if(m<=3){add('Answer (AO1)',top?qaDot(top.point):qaDot(b.summary));return P;}
+    if(m<=5){add('Answer (AO1)',`${top?qaDot(top.point):''} ${argDB?'\n\n'+argDB.premises:''} ${t2?'\n\n'+qaDot(t2.point):''}`.trim());return P;}
+    if(m<=12){add('Part one (AO1)',`${top?top.name+'. '+qaDot(top.point):''}${argDB?'\n\n'+argDB.premises:''}`);add('Part two (AO1)',t2?`${t2.name}. ${qaDot(t2.point)}${args[2]?' '+qaDot(args[2].point):''}`:'[Explain the response, linking it step by step to the problem in part one.]');add('Link',`The response works by targeting [the specific premise or condition] identified above, which is why [one-sentence link].`);return P;}
+    add('Introduction',`${chains[0]?'I will argue that '+qaLow(qaDot(qaClean(chains[0].verdict))):'[State your thesis.]'} The answer sets out the view, tests it against its strongest objections, and reaches a judgement.`);
+    add('The position explained (AO1)',[top?`${top.name}: ${qaDot(top.point)}`:'',argDB?argDB.premises:'',t2?`${t2.name}: ${qaDot(t2.point)}`:''].filter(Boolean).join('\n\n'));
+    chains.slice(0,nChains).forEach((c,i)=>add(`Objection and response ${i+1} (AO2)`,`${qaDot(qaClean(c.claim))} ${qaDot(qaClean(c.support))} In reply, ${qaLow(qaDot(qaClean(c.counter)))} ${qaDot(qaClean(c.verdict))}`));
+    add('Conclusion (AO2)',`Weighing these arguments, ${chains.slice(0,nChains).map(c=>qaLow(qaClean(c.verdict).replace(/[.]$/,''))).slice(0,2).join(', and ')}. Therefore [your final verdict on the question].`);
+    return P;}
+  /* English */
+  const textId=/streetcar|blanche|stanley|stella|williams/i.test(R.text)?'tx02':/gatsby|nick|daisy|fitzgerald|tom|myrtle|jordan/i.test(R.text)?'tx01':/paris/i.test(R.text)?'tx03':/poem|poet/i.test(R.text)?'tx04':'';
+  let qs=(DB.quotes||[]).filter(q=>!textId||q.textId===textId);
+  const fs=R.focus.map(qaStem);qs=qs.map(q=>({q,s:qaTok([q.theme,q.quote,q.analysis,q.technique].join(' ')).filter(w=>fs.includes(qaStem(w))).length})).sort((a,b)=>b.s-a.s).map(x=>x.q);
+  const writer=textId==='tx02'?'Williams':textId==='tx01'?'Fitzgerald':'[Writer]';
+  const ctx=qaCore(b,['context'],3),meth=qaCore(b,['concept','critic','method'],4);const n=Math.max(3,Math.min(5,R.marks?Math.round(R.marks/10)+1:3));
+  add('Introduction',`${qaDot(b.summary.split(/(?<=\.)\s/)[0])} ${R.focus.length?'In this answer, '+writer+' is shown to present '+(R.focus.slice(0,3).join(' and ')||'[the focus]')+' as [conceptual claim about how and why].':''}`);
+  qs.slice(0,n).forEach((q,i)=>add(`Paragraph ${i+1}`,`**Point.** ${writer} presents ${qaLow(q.theme||R.focus[0]||'[focus]')} through ${qaLow(String(q.technique||'[method]').split(/;\s*/)[0])}.\n\n**Evidence.** ${q.speaker?q.speaker+': ':''}“${q.quote}”\n\n**Analysis.** ${qaDot(q.analysis||'[Zoom in on a single word and its effect.]')}${meth[i]?'\n\n**Link.** '+qaDot(meth[i].name)+' '+qaDot(meth[i].point):''}\n\n**Context.** ${ctx[i%Math.max(1,ctx.length)]?qaDot(ctx[i%ctx.length].point):'[Link one context point to this method.]'}`));
+  if(!qs.length)add('Paragraphs','[No stored quotations match this text yet. Use three or four short quotations, each with a named method, a close analysis of one word, and a context link.]');
+  add('Conclusion',`Ultimately, ${writer} presents ${R.focus.slice(0,2).join(' and ')||'[the focus]'} as [final judgement], and the methods above show how [overall effect on the reader or audience].`);
+  return P;
+}
+/* ---- view ---- */
+ZS.qa={text:'',sub:'',res:null};
+const QA_EXL=['Law problem','Philosophy essay','English essay','Law essay','Philosophy 5-mark'];
+const QA_EX=[['law','Dan and Ed play a game of “catch the knife”. Ed is cut badly. Later, after drinking six pints, Dan punches Fay, breaking her nose, because he wrongly thinks she is about to attack him. Advise Dan. [25 marks]'],['phil','Is functionalism the most convincing theory of mind? [25 marks]'],['eng','Explore the significance of the green light in The Great Gatsby.'],['law','“The law on consent is inconsistent and in need of reform.” Evaluate this statement. [25 marks]'],['phil','Explain how Gettier’s counterexamples show the tripartite view is false. [5 marks]']];
+function qaHl(R){
+  let h=zEsc(R.text);const mark=(re,cls)=>{h=h.replace(re,m=>`<span class="qa-${cls}">${m}</span>`);};
+  if(R.cmd&&R.cmd.re)mark(new RegExp(R.cmd.re.source,'gi'),'cmd');
+  R.parties.all.forEach(p=>mark(new RegExp('\\b'+p+'\\b','g'),'party'));
+  mark(/\[\s*\d{1,2}\s*marks?\s*\]|\(\s*\d{1,2}\s*marks?\s*\)/gi,'marks');
+  R.focus.slice(0,6).forEach(f=>{if(f.length>3)h=h.replace(new RegExp('(^|[^\\w>])('+f.replace(/[^a-z’'\-]/gi,'')+')(?![^<]*<\\/span>)(?=\\W|$)','gi'),'$1<span class="qa-focus">$2</span>');});
+  return h;
+}
+function qaMd(t){return zEsc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\[([^\]]{1,140})\]/g,'<span class="zn-blank">[$1]</span>').replace(/\n\n/g,'</p><p>').replace(/\n/g,'<br>');}
+function zQA(){
+  const Q=ZS.qa,R=Q.res;
+  const head=`<h1 class="zn-h1">Question analyser</h1><p class="zn-lede">Paste any exam question. It is decoded, matched to the right blueprint, and answered with a plan and a full draft built only from what is already in Akashic. It runs on this device and needs no connection.</p>
+  <div class="zn-p"><textarea data-zi="qatext" aria-label="Exam question" placeholder="Paste or type the question, including the scenario and the marks if you have them" style="min-height:120px">${zEsc(Q.text)}</textarea>
+  <div class="zn-chips" style="margin-top:12px;align-items:center"><button class="zn-btn pri" data-z="qarun">Analyse and answer</button><span class="zn-sm zn-muted">Subject</span>${[['','Auto'],...ZSUBS.map(s=>[s,ZSUB[s].name.split(' ')[0]])].map(x=>`<button class="zn-chip ${Q.sub===x[0]?'on':''}" data-z="qasub" data-s="${x[0]}">${x[1]}</button>`).join('')}</div>
+  <div class="zn-chips" style="margin-top:10px"><span class="zn-xs zn-faint" style="align-self:center">Try:</span>${QA_EX.map((e,i)=>`<button class="zn-chip" data-z="qaex" data-i="${i}" title="${zEsc(e[1])}">${zEsc(QA_EXL[i])}</button>`).join('')}</div></div>`;
+  if(!R)return head;
+  const aoE=Object.entries(R.ao||{}).filter(x=>x[1]!==''),T=aoE.reduce((a,x)=>a+(+x[1]||0),0)||1;
+  return head+`<div class="zs-${R.sub}">
+  <section class="zn-sec"><h3>The question, decoded</h3><div class="zn-p"><p class="qa-q">${qaHl(R)}</p>
+    <div class="qa-facts"><div><small>Subject</small><b>${zEsc(ZSUB[R.sub].name)}</b></div><div><small>Command</small><b>${zEsc(R.cmd.w)}</b></div><div><small>Type</small><b>${zEsc({problem:'Problem question',eval:'Evaluation essay',explain:'Explanation',define:'Definition',analyse:'Analysis',compare:'Comparison'}[R.type]||R.type)}</b></div><div><small>Marks</small><b>${R.marks||'Not given'}</b></div><div><small>Time</small><b>${R.minutes?R.minutes+' min':'Check paper'}</b></div></div>
+    ${aoE.length&&T>1?`<div class="zn-split" style="height:10px;margin-top:14px">${aoE.map(x=>`<i style="width:${(+x[1]||0)/T*100}%;background:${ZAOC[x[0]]}" title="${x[0]} ${x[1]}"></i>`).join('')}</div><div class="zn-chips" style="margin-top:8px">${aoE.map(x=>`<span class="zn-xs zn-muted" style="display:inline-flex;align-items:center;gap:5px"><i style="width:9px;height:9px;border-radius:2px;background:${ZAOC[x[0]]}"></i>${x[0]} ${x[1]}</span>`).join('')}</div>`:''}
+    ${R.em?`<p class="zn-xs zn-faint" style="margin:10px 0 0">Matched to ${zEsc(R.em.paper)}: ${zEsc(R.em.type)}.</p>`:''}</div></section>
+  <section class="zn-sec zn-grid zn-g2"><div class="zn-p"><div class="zn-h3">What it is really asking</div><ul class="zn-list zn-sm">${R.demands.map(d=>`<li>${zEsc(d)}</li>`).join('')}</ul></div>
+    <div class="zn-p"><div class="zn-h3">Matched blueprint</div>${R.bp?`<button class="zn-bp" data-z="bp" data-id="${R.bp.id}" style="width:100%"><b>${zEsc(R.bp.title)}</b><span class="zn-xs zn-muted">${zEsc(R.bp.strand)}</span></button>${R.type==='problem'&&R.issues.length>1?`<div class="zn-xs zn-muted" style="margin:10px 0 4px">Issues spotted in the scenario</div><div class="qa-links">${R.issues.map(i=>`<button data-z="bp" data-id="${i.b.id}">${zEsc(i.b.title)}</button>`).join('')}</div>`:''}${R.alt.length?`<div class="zn-xs zn-muted" style="margin:10px 0 4px">Also relevant</div><div class="qa-links">${R.alt.map(b=>`<button data-z="bp" data-id="${b.id}">${zEsc(b.title)}</button>`).join('')}</div>`:''}`:'<p class="zn-muted zn-sm">No blueprint matched. Add a topic word.</p>'}</div></section>
+  ${R.st?`<section class="zn-sec"><h3>The plan</h3><p class="zn-sub">${zEsc(R.st.for)}</p><div class="zn-p"><ol class="zn-path">${zarr(R.st.steps).map(s=>`<li><b>${zEsc(s.label)}</b><div class="meta">${zarr(s.ao).map(a=>`<span class="zn-chip" style="border-color:${ZAOC[a]||'var(--zl2)'};color:${ZAOC[a]||'inherit'}">${zEsc(a)}</span>`).join('')}${s.words?`<span class="zn-chip">${zEsc(s.words)} words</span>`:''}</div><p>${zEsc(s.do||'')}</p></li>`).join('')}</ol>
+    <div class="zn-chips"><button class="zn-btn sm pri" data-z="qaforge">Write it in the essay forge</button></div></div></section>`:''}
+  <section class="zn-sec"><h3>Draft answer</h3><p class="zn-sub">Assembled from your app's cases, arguments, quotations and blueprints. Fill the highlighted brackets with your own judgement before you use it.</p>
+    <div class="zn-p qa-ans">${R.answer.map(p=>`<div class="qa-para"><div class="zn-xs" style="color:var(--zc);margin-bottom:4px">${zEsc(p.h)}</div><p>${qaMd(p.t)}</p></div>`).join('')}
+    <div class="zn-chips" style="margin-top:14px"><button class="zn-btn sm" data-z="qacopy">Copy answer</button><button class="zn-btn sm" data-z="qasave">Save to notes</button></div></div></section>
+  ${R.ev.length?`<section class="zn-sec"><h3>Evidence from your archive</h3><div class="zn-p">${R.ev.map(r=>`<details class="qa-ev"><summary><span class="zn-chip">${zEsc((KINDS[r.kind]||{}).label||r.kind)}</span><b>${zEsc(clip(r.title,90))}</b></summary><p class="zn-sm">${zEsc(r.lede)}</p>${r.fields.slice(0,3).map(f=>`<p class="zn-xs zn-muted"><b>${zEsc(f.l)}.</b> ${zEsc(clip(f.v,300))}</p>`).join('')}</details>`).join('')}</div></section>`:''}
+  </div>`;
+}
+const qaPlain=R=>R.answer.map(p=>p.h+'\n'+p.t.replace(/\*\*/g,'')).join('\n\n');
+const ZEN_QA_HOOK={
+  click(a,el,z){
+    if(a==='qarun'){const t=($('[data-zi=qatext]')||{}).value||ZS.qa.text;ZS.qa.text=t;ZS.qa.res=qaAnalyse(t,ZS.qa.sub);z.qaLast=t;persist();zRender();setTimeout(()=>{const s=document.querySelector('#zenith .zn-sec');if(s)s.scrollIntoView({behavior:'smooth',block:'start'});},60);return true;}
+    if(a==='qasub'){ZS.qa.sub=el.dataset.s;if(ZS.qa.res)ZS.qa.res=qaAnalyse(ZS.qa.text,ZS.qa.sub);zRender();return true;}
+    if(a==='qaex'){const e=QA_EX[+el.dataset.i];ZS.qa.text=e[1];ZS.qa.sub='';ZS.qa.res=qaAnalyse(e[1],'');zRender();return true;}
+    if(a==='qacopy'){zCopy(qaPlain(ZS.qa.res));return true;}
+    if(a==='qasave'){const R=ZS.qa.res;change('Save question analysis',()=>{DB.notes.push({id:uid(),created:todayISO(),updated:todayISO(),title:'Answer: '+clip(R.text,60),body:'## Question\n'+R.text+'\n\n'+R.answer.map(p=>'## '+p.h+'\n'+p.t).join('\n\n'),sub:R.sub,topicId:(R.bp&&zarr(R.bp.topicIds)[0])||'',linkedTask:'',pinned:false});});zToast('Saved to your '+ZSUB[R.sub].name+' notes');return true;}
+    if(a==='qaforge'){const R=ZS.qa.res;if(!R.bp)return true;z.essay={bp:R.bp.id,si:Math.max(0,zarr(R.bp.structures).indexOf(R.st)),q:R.text,notes:{}};persist();zGo('essay');return true;}
+    return false;},
+  input(k,el){if(k==='qatext'){ZS.qa.text=el.value;return true;}return false;}
+};
+if(window.__LYCEUM_TEST)window.__zen={qaAnalyse,zBp,qaPlain};
 
 /* ============ LAYERS: one close path for Esc, back button and taps ============ */
 const LAYER_SEL=['#modalback','#console','#dossier','#lockUpdates','#qs','#zenith'];
@@ -7793,7 +8098,6 @@ if(DB.settings.lock.enabled) showLock();
 })();
 </script>
 <script>
-/* installed-app support: offline copy + ask the browser to keep saved progress */
 if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
   addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
   if(navigator.storage&&navigator.storage.persist) navigator.storage.persist().catch(()=>{});
